@@ -1,0 +1,109 @@
+/* eslint-disable react-native/no-inline-styles */
+import React, {FC, ReactNode, memo} from 'react';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  TextStyle,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  ViewStyle,
+} from 'react-native';
+import {rowReverseRTL} from '@/utils/arabicStyles';
+import {Colors} from '@/constants/Colors';
+import {
+  commonFontStyle,
+  getFontSize,
+  hp,
+} from '@/utils/responsiveFn/responsiveFn';
+import CommonText from './CommonText';
+
+type Props = {
+  disabled?: boolean;
+  title: any;
+  onPress?: () => void;
+  btnStyle?: ViewStyle;
+  leftImg?: ReactNode;
+  textStyle?: TextStyle;
+  type?: 'fill' | 'outline';
+  RightImg?: ReactNode;
+  loading?: boolean;
+} & TouchableOpacityProps;
+
+const CustomButton: FC<Props> = ({
+  title,
+  btnStyle,
+  disabled,
+  leftImg,
+  textStyle,
+  onPress = () => {},
+  type = 'fill',
+  RightImg,
+  loading,
+}) => {
+  return type === 'fill' ? (
+    <TouchableOpacity
+      disabled={loading || disabled}
+      onPress={() => onPress()}
+      style={[
+        styles.buttonStyle,
+        {
+          opacity: disabled ? 0.7 : 1,
+        },
+        btnStyle,
+      ]}>
+      {loading ? (
+        <ActivityIndicator color={Colors.white} />
+      ) : (
+        <>
+          {leftImg && leftImg}
+          <CommonText
+            text={title}
+            style={[{...commonFontStyle(500, 2, Colors.white)}, textStyle]}
+          />
+          {RightImg && RightImg}
+        </>
+      )}
+    </TouchableOpacity>
+  ) : (
+    <TouchableOpacity
+      disabled={loading || disabled}
+      onPress={() => onPress()}
+      style={[styles.buttonStyle, styles.outline_buttonStyle, btnStyle]}>
+      {loading ? (
+        <ActivityIndicator color={Colors.primary} />
+      ) : (
+        <>
+          {leftImg && leftImg}
+          <CommonText
+            text={title}
+            style={[
+              {
+                ...commonFontStyle(500, 2, Colors.primary),
+              },
+              textStyle,
+            ]}
+          />
+          {RightImg && RightImg}
+        </>
+      )}
+    </TouchableOpacity>
+  );
+};
+export default memo(CustomButton);
+
+const styles = StyleSheet.create({
+  buttonStyle: {
+    backgroundColor: Colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: hp(100),
+    gap: getFontSize(1.5),
+    height: hp(55),
+    ...rowReverseRTL(),
+  },
+  outline_buttonStyle: {
+    backgroundColor: Colors.white,
+    borderWidth: 1.3,
+    borderColor: Colors.primary,
+  },
+});
