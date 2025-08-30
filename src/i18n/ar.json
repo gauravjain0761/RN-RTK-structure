@@ -1,0 +1,19 @@
+{
+  "translation": {
+    "Skip": "تخطي",
+    "Login to Your Account": "تسجيل الدخول إلى حسابك",
+    "Sign Up": "اشتراك",
+    "Sign In": "تسجيل الدخول",
+    "Remember me": "تذكرني",
+    "Resend code": "إعادة إرسال الرمز",
+    "Face Unlock": "فتح القفل بالوجه",
+    "or continue with": "أو تابع باستخدام",
+    "Already have an account?": "هل لديك حساب بالفعل؟",
+    "Don't have an account?": "ليس لديك حساب؟",
+    "Full Name": "الاسم الكامل",
+    "Email": "البريد الإلكتروني",
+    "OTP Code Verification": "التحقق من رمز OTP",
+    "Code has been send to ": "تم إرسال الرمز إلى ",
+    "s": "ث"
+  }
+}
